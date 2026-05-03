@@ -44,7 +44,7 @@ def budgets_menu(conn: sqlite3.Connection) -> None:
             "INSERT INTO budgets(month, category_id, amount) "
             "VALUES (?, ?, ?) "
             "ON CONFLICT(month, category_id) DO UPDATE SET amount = excluded.amount",
-            (month, category_id, str(amount)),
+            (month, category_id, float(amount)),
         )
         conn.commit()
     except sqlite3.IntegrityError as e:

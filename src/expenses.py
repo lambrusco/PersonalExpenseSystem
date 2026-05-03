@@ -47,7 +47,7 @@ def expenses_menu(conn: sqlite3.Connection) -> None:
         conn.execute(
             "INSERT INTO expenses(expense_date, amount, category_id, description) "
             "VALUES (?, ?, ?, ?)",
-            (expense_date, str(amount), category_id, description),
+            (expense_date, float(amount), category_id, description),
         )
         conn.commit()
     except sqlite3.IntegrityError as e:
